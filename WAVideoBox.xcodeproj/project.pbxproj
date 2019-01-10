@@ -1,0 +1,702 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3B9027CD21E1F2E7001B1497 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9027CC21E1F2E7001B1497 /* AppDelegate.m */; };
+		3B9027D021E1F2E7001B1497 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9027CF21E1F2E7001B1497 /* ViewController.m */; };
+		3B9027D321E1F2E7001B1497 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9027D121E1F2E7001B1497 /* Main.storyboard */; };
+		3B9027D521E1F2E9001B1497 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B9027D421E1F2E9001B1497 /* Assets.xcassets */; };
+		3B9027D821E1F2E9001B1497 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9027D621E1F2E9001B1497 /* LaunchScreen.storyboard */; };
+		3B9027DB21E1F2E9001B1497 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9027DA21E1F2E9001B1497 /* main.m */; };
+		3B9027E521E1F2E9001B1497 /* WAVideoBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9027E421E1F2E9001B1497 /* WAVideoBoxTests.m */; };
+		3B9027F021E1F2E9001B1497 /* WAVideoBoxUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9027EF21E1F2E9001B1497 /* WAVideoBoxUITests.m */; };
+		3B90281921E1F2F3001B1497 /* WAVideoBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9027FE21E1F2F3001B1497 /* WAVideoBox.m */; };
+		3B90281A21E1F2F3001B1497 /* WAAVSEImageMixCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B90280321E1F2F3001B1497 /* WAAVSEImageMixCommand.m */; };
+		3B90281B21E1F2F3001B1497 /* WAAVSEGearboxCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B90280521E1F2F3001B1497 /* WAAVSEGearboxCommand.m */; };
+		3B90281C21E1F2F3001B1497 /* WAAVSEGearboxCommandModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B90280621E1F2F3001B1497 /* WAAVSEGearboxCommandModel.m */; };
+		3B90281D21E1F2F3001B1497 /* WAAVSERotateCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B90280821E1F2F3001B1497 /* WAAVSERotateCommand.m */; };
+		3B90281E21E1F2F3001B1497 /* WAAVSECommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B90280C21E1F2F3001B1497 /* WAAVSECommand.m */; };
+		3B90282021E1F2F3001B1497 /* WAAVSEExportCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B90280E21E1F2F3001B1497 /* WAAVSEExportCommand.m */; };
+		3B90282121E1F2F3001B1497 /* WAAVSEReplaceSoundCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B90281021E1F2F3001B1497 /* WAAVSEReplaceSoundCommand.m */; };
+		3B90282221E1F2F3001B1497 /* WAAVSERangeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B90281221E1F2F3001B1497 /* WAAVSERangeCommand.m */; };
+		3B90282321E1F2F3001B1497 /* WAAVSEDubbedCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B90281421E1F2F3001B1497 /* WAAVSEDubbedCommand.m */; };
+		3B90282421E1F2F3001B1497 /* WAAVSEComposition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B90281521E1F2F3001B1497 /* WAAVSEComposition.m */; };
+		3B90282521E1F2F3001B1497 /* WAAVSEVideoMixCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B90281621E1F2F3001B1497 /* WAAVSEVideoMixCommand.m */; };
+		3B90282C21E1FAC3001B1497 /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B90282B21E1FAC3001B1497 /* PlayViewController.m */; };
+		3B90283421E1FF22001B1497 /* test3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3B90282F21E1FF21001B1497 /* test3.mp4 */; };
+		3B90283821E1FF22001B1497 /* nature.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3B90283321E1FF22001B1497 /* nature.mp4 */; };
+		3BCAF55621E72B8000663097 /* test2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3BCAF55521E72B8000663097 /* test2.mp4 */; };
+		3BD923AA21E44D8F007D85B8 /* test1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3BD923A921E44D8F007D85B8 /* test1.mp4 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3B9027E121E1F2E9001B1497 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B9027C021E1F2E7001B1497 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B9027C721E1F2E7001B1497;
+			remoteInfo = WAVideoBox;
+		};
+		3B9027EC21E1F2E9001B1497 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B9027C021E1F2E7001B1497 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B9027C721E1F2E7001B1497;
+			remoteInfo = WAVideoBox;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3B9027C821E1F2E7001B1497 /* WAVideoBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WAVideoBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B9027CB21E1F2E7001B1497 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3B9027CC21E1F2E7001B1497 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3B9027CE21E1F2E7001B1497 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		3B9027CF21E1F2E7001B1497 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		3B9027D221E1F2E7001B1497 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3B9027D421E1F2E9001B1497 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3B9027D721E1F2E9001B1497 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3B9027D921E1F2E9001B1497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B9027DA21E1F2E9001B1497 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3B9027E021E1F2E9001B1497 /* WAVideoBoxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WAVideoBoxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B9027E421E1F2E9001B1497 /* WAVideoBoxTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WAVideoBoxTests.m; sourceTree = "<group>"; };
+		3B9027E621E1F2E9001B1497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B9027EB21E1F2E9001B1497 /* WAVideoBoxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WAVideoBoxUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B9027EF21E1F2E9001B1497 /* WAVideoBoxUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WAVideoBoxUITests.m; sourceTree = "<group>"; };
+		3B9027F121E1F2E9001B1497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B9027FE21E1F2F3001B1497 /* WAVideoBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAVideoBox.m; sourceTree = "<group>"; };
+		3B90280021E1F2F3001B1497 /* WAAVSEExportCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAAVSEExportCommand.h; sourceTree = "<group>"; };
+		3B90280221E1F2F3001B1497 /* WAAVSECommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAAVSECommand.h; sourceTree = "<group>"; };
+		3B90280321E1F2F3001B1497 /* WAAVSEImageMixCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAAVSEImageMixCommand.m; sourceTree = "<group>"; };
+		3B90280421E1F2F3001B1497 /* WAAVSEReplaceSoundCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAAVSEReplaceSoundCommand.h; sourceTree = "<group>"; };
+		3B90280521E1F2F3001B1497 /* WAAVSEGearboxCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAAVSEGearboxCommand.m; sourceTree = "<group>"; };
+		3B90280621E1F2F3001B1497 /* WAAVSEGearboxCommandModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAAVSEGearboxCommandModel.m; sourceTree = "<group>"; };
+		3B90280721E1F2F3001B1497 /* WAAVSERangeCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAAVSERangeCommand.h; sourceTree = "<group>"; };
+		3B90280821E1F2F3001B1497 /* WAAVSERotateCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAAVSERotateCommand.m; sourceTree = "<group>"; };
+		3B90280921E1F2F3001B1497 /* WAAVSEVideoMixCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAAVSEVideoMixCommand.h; sourceTree = "<group>"; };
+		3B90280A21E1F2F3001B1497 /* WAAVSEComposition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAAVSEComposition.h; sourceTree = "<group>"; };
+		3B90280B21E1F2F3001B1497 /* WAAVSEDubbedCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAAVSEDubbedCommand.h; sourceTree = "<group>"; };
+		3B90280C21E1F2F3001B1497 /* WAAVSECommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAAVSECommand.m; sourceTree = "<group>"; };
+		3B90280E21E1F2F3001B1497 /* WAAVSEExportCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAAVSEExportCommand.m; sourceTree = "<group>"; };
+		3B90280F21E1F2F3001B1497 /* WAAVSEGearboxCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAAVSEGearboxCommand.h; sourceTree = "<group>"; };
+		3B90281021E1F2F3001B1497 /* WAAVSEReplaceSoundCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAAVSEReplaceSoundCommand.m; sourceTree = "<group>"; };
+		3B90281121E1F2F3001B1497 /* WAAVSEImageMixCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAAVSEImageMixCommand.h; sourceTree = "<group>"; };
+		3B90281221E1F2F3001B1497 /* WAAVSERangeCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAAVSERangeCommand.m; sourceTree = "<group>"; };
+		3B90281321E1F2F3001B1497 /* WAAVSEGearboxCommandModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAAVSEGearboxCommandModel.h; sourceTree = "<group>"; };
+		3B90281421E1F2F3001B1497 /* WAAVSEDubbedCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAAVSEDubbedCommand.m; sourceTree = "<group>"; };
+		3B90281521E1F2F3001B1497 /* WAAVSEComposition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAAVSEComposition.m; sourceTree = "<group>"; };
+		3B90281621E1F2F3001B1497 /* WAAVSEVideoMixCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAAVSEVideoMixCommand.m; sourceTree = "<group>"; };
+		3B90281721E1F2F3001B1497 /* WAAVSERotateCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAAVSERotateCommand.h; sourceTree = "<group>"; };
+		3B90281821E1F2F3001B1497 /* WAVideoBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAVideoBox.h; sourceTree = "<group>"; };
+		3B90282A21E1FAC3001B1497 /* PlayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
+		3B90282B21E1FAC3001B1497 /* PlayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayViewController.m; sourceTree = "<group>"; };
+		3B90282F21E1FF21001B1497 /* test3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test3.mp4; sourceTree = "<group>"; };
+		3B90283321E1FF22001B1497 /* nature.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = nature.mp4; sourceTree = "<group>"; };
+		3BCAF55521E72B8000663097 /* test2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test2.mp4; sourceTree = "<group>"; };
+		3BD923A921E44D8F007D85B8 /* test1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test1.mp4; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3B9027C521E1F2E7001B1497 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B9027DD21E1F2E9001B1497 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B9027E821E1F2E9001B1497 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3B9027BF21E1F2E7001B1497 = {
+			isa = PBXGroup;
+			children = (
+				3B9027CA21E1F2E7001B1497 /* WAVideoBox */,
+				3B9027E321E1F2E9001B1497 /* WAVideoBoxTests */,
+				3B9027EE21E1F2E9001B1497 /* WAVideoBoxUITests */,
+				3B9027C921E1F2E7001B1497 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3B9027C921E1F2E7001B1497 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3B9027C821E1F2E7001B1497 /* WAVideoBox.app */,
+				3B9027E021E1F2E9001B1497 /* WAVideoBoxTests.xctest */,
+				3B9027EB21E1F2E9001B1497 /* WAVideoBoxUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3B9027CA21E1F2E7001B1497 /* WAVideoBox */ = {
+			isa = PBXGroup;
+			children = (
+				3B90282E21E1FF16001B1497 /* Sources */,
+				3B9027FD21E1F2F3001B1497 /* WAVideoBox */,
+				3B9027CB21E1F2E7001B1497 /* AppDelegate.h */,
+				3B9027CC21E1F2E7001B1497 /* AppDelegate.m */,
+				3B9027CE21E1F2E7001B1497 /* ViewController.h */,
+				3B9027CF21E1F2E7001B1497 /* ViewController.m */,
+				3B90282A21E1FAC3001B1497 /* PlayViewController.h */,
+				3B90282B21E1FAC3001B1497 /* PlayViewController.m */,
+				3B9027D121E1F2E7001B1497 /* Main.storyboard */,
+				3B9027D421E1F2E9001B1497 /* Assets.xcassets */,
+				3B9027D621E1F2E9001B1497 /* LaunchScreen.storyboard */,
+				3B9027D921E1F2E9001B1497 /* Info.plist */,
+				3B9027DA21E1F2E9001B1497 /* main.m */,
+			);
+			path = WAVideoBox;
+			sourceTree = "<group>";
+		};
+		3B9027E321E1F2E9001B1497 /* WAVideoBoxTests */ = {
+			isa = PBXGroup;
+			children = (
+				3B9027E421E1F2E9001B1497 /* WAVideoBoxTests.m */,
+				3B9027E621E1F2E9001B1497 /* Info.plist */,
+			);
+			path = WAVideoBoxTests;
+			sourceTree = "<group>";
+		};
+		3B9027EE21E1F2E9001B1497 /* WAVideoBoxUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3B9027EF21E1F2E9001B1497 /* WAVideoBoxUITests.m */,
+				3B9027F121E1F2E9001B1497 /* Info.plist */,
+			);
+			path = WAVideoBoxUITests;
+			sourceTree = "<group>";
+		};
+		3B9027FD21E1F2F3001B1497 /* WAVideoBox */ = {
+			isa = PBXGroup;
+			children = (
+				3B90281821E1F2F3001B1497 /* WAVideoBox.h */,
+				3B9027FE21E1F2F3001B1497 /* WAVideoBox.m */,
+				3B9027FF21E1F2F3001B1497 /* WAAVSeCommand */,
+			);
+			path = WAVideoBox;
+			sourceTree = "<group>";
+		};
+		3B9027FF21E1F2F3001B1497 /* WAAVSeCommand */ = {
+			isa = PBXGroup;
+			children = (
+				3B90280A21E1F2F3001B1497 /* WAAVSEComposition.h */,
+				3B90281521E1F2F3001B1497 /* WAAVSEComposition.m */,
+				3B90280221E1F2F3001B1497 /* WAAVSECommand.h */,
+				3B90280C21E1F2F3001B1497 /* WAAVSECommand.m */,
+				3B90280021E1F2F3001B1497 /* WAAVSEExportCommand.h */,
+				3B90280E21E1F2F3001B1497 /* WAAVSEExportCommand.m */,
+				3B90281121E1F2F3001B1497 /* WAAVSEImageMixCommand.h */,
+				3B90280321E1F2F3001B1497 /* WAAVSEImageMixCommand.m */,
+				3B90280421E1F2F3001B1497 /* WAAVSEReplaceSoundCommand.h */,
+				3B90281021E1F2F3001B1497 /* WAAVSEReplaceSoundCommand.m */,
+				3B90280F21E1F2F3001B1497 /* WAAVSEGearboxCommand.h */,
+				3B90280521E1F2F3001B1497 /* WAAVSEGearboxCommand.m */,
+				3B90281321E1F2F3001B1497 /* WAAVSEGearboxCommandModel.h */,
+				3B90280621E1F2F3001B1497 /* WAAVSEGearboxCommandModel.m */,
+				3B90280721E1F2F3001B1497 /* WAAVSERangeCommand.h */,
+				3B90281221E1F2F3001B1497 /* WAAVSERangeCommand.m */,
+				3B90281721E1F2F3001B1497 /* WAAVSERotateCommand.h */,
+				3B90280821E1F2F3001B1497 /* WAAVSERotateCommand.m */,
+				3B90280921E1F2F3001B1497 /* WAAVSEVideoMixCommand.h */,
+				3B90281621E1F2F3001B1497 /* WAAVSEVideoMixCommand.m */,
+				3B90280B21E1F2F3001B1497 /* WAAVSEDubbedCommand.h */,
+				3B90281421E1F2F3001B1497 /* WAAVSEDubbedCommand.m */,
+			);
+			path = WAAVSeCommand;
+			sourceTree = "<group>";
+		};
+		3B90282E21E1FF16001B1497 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				3BD923A921E44D8F007D85B8 /* test1.mp4 */,
+				3BCAF55521E72B8000663097 /* test2.mp4 */,
+				3B90282F21E1FF21001B1497 /* test3.mp4 */,
+				3B90283321E1FF22001B1497 /* nature.mp4 */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3B9027C721E1F2E7001B1497 /* WAVideoBox */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B9027F421E1F2E9001B1497 /* Build configuration list for PBXNativeTarget "WAVideoBox" */;
+			buildPhases = (
+				3B9027C421E1F2E7001B1497 /* Sources */,
+				3B9027C521E1F2E7001B1497 /* Frameworks */,
+				3B9027C621E1F2E7001B1497 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WAVideoBox;
+			productName = WAVideoBox;
+			productReference = 3B9027C821E1F2E7001B1497 /* WAVideoBox.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3B9027DF21E1F2E9001B1497 /* WAVideoBoxTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B9027F721E1F2E9001B1497 /* Build configuration list for PBXNativeTarget "WAVideoBoxTests" */;
+			buildPhases = (
+				3B9027DC21E1F2E9001B1497 /* Sources */,
+				3B9027DD21E1F2E9001B1497 /* Frameworks */,
+				3B9027DE21E1F2E9001B1497 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3B9027E221E1F2E9001B1497 /* PBXTargetDependency */,
+			);
+			name = WAVideoBoxTests;
+			productName = WAVideoBoxTests;
+			productReference = 3B9027E021E1F2E9001B1497 /* WAVideoBoxTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3B9027EA21E1F2E9001B1497 /* WAVideoBoxUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B9027FA21E1F2E9001B1497 /* Build configuration list for PBXNativeTarget "WAVideoBoxUITests" */;
+			buildPhases = (
+				3B9027E721E1F2E9001B1497 /* Sources */,
+				3B9027E821E1F2E9001B1497 /* Frameworks */,
+				3B9027E921E1F2E9001B1497 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3B9027ED21E1F2E9001B1497 /* PBXTargetDependency */,
+			);
+			name = WAVideoBoxUITests;
+			productName = WAVideoBoxUITests;
+			productReference = 3B9027EB21E1F2E9001B1497 /* WAVideoBoxUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3B9027C021E1F2E7001B1497 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "黄锐灏";
+				TargetAttributes = {
+					3B9027C721E1F2E7001B1497 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					3B9027DF21E1F2E9001B1497 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 3B9027C721E1F2E7001B1497;
+					};
+					3B9027EA21E1F2E9001B1497 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 3B9027C721E1F2E7001B1497;
+					};
+				};
+			};
+			buildConfigurationList = 3B9027C321E1F2E7001B1497 /* Build configuration list for PBXProject "WAVideoBox" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3B9027BF21E1F2E7001B1497;
+			productRefGroup = 3B9027C921E1F2E7001B1497 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3B9027C721E1F2E7001B1497 /* WAVideoBox */,
+				3B9027DF21E1F2E9001B1497 /* WAVideoBoxTests */,
+				3B9027EA21E1F2E9001B1497 /* WAVideoBoxUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3B9027C621E1F2E7001B1497 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B9027D821E1F2E9001B1497 /* LaunchScreen.storyboard in Resources */,
+				3B9027D521E1F2E9001B1497 /* Assets.xcassets in Resources */,
+				3B9027D321E1F2E7001B1497 /* Main.storyboard in Resources */,
+				3B90283421E1FF22001B1497 /* test3.mp4 in Resources */,
+				3BD923AA21E44D8F007D85B8 /* test1.mp4 in Resources */,
+				3B90283821E1FF22001B1497 /* nature.mp4 in Resources */,
+				3BCAF55621E72B8000663097 /* test2.mp4 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B9027DE21E1F2E9001B1497 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B9027E921E1F2E9001B1497 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3B9027C421E1F2E7001B1497 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B9027D021E1F2E7001B1497 /* ViewController.m in Sources */,
+				3B90282421E1F2F3001B1497 /* WAAVSEComposition.m in Sources */,
+				3B90282221E1F2F3001B1497 /* WAAVSERangeCommand.m in Sources */,
+				3B90281C21E1F2F3001B1497 /* WAAVSEGearboxCommandModel.m in Sources */,
+				3B90282C21E1FAC3001B1497 /* PlayViewController.m in Sources */,
+				3B90281E21E1F2F3001B1497 /* WAAVSECommand.m in Sources */,
+				3B90281A21E1F2F3001B1497 /* WAAVSEImageMixCommand.m in Sources */,
+				3B90282321E1F2F3001B1497 /* WAAVSEDubbedCommand.m in Sources */,
+				3B90282121E1F2F3001B1497 /* WAAVSEReplaceSoundCommand.m in Sources */,
+				3B9027DB21E1F2E9001B1497 /* main.m in Sources */,
+				3B90281B21E1F2F3001B1497 /* WAAVSEGearboxCommand.m in Sources */,
+				3B90281D21E1F2F3001B1497 /* WAAVSERotateCommand.m in Sources */,
+				3B9027CD21E1F2E7001B1497 /* AppDelegate.m in Sources */,
+				3B90282521E1F2F3001B1497 /* WAAVSEVideoMixCommand.m in Sources */,
+				3B90281921E1F2F3001B1497 /* WAVideoBox.m in Sources */,
+				3B90282021E1F2F3001B1497 /* WAAVSEExportCommand.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B9027DC21E1F2E9001B1497 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B9027E521E1F2E9001B1497 /* WAVideoBoxTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B9027E721E1F2E9001B1497 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B9027F021E1F2E9001B1497 /* WAVideoBoxUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3B9027E221E1F2E9001B1497 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B9027C721E1F2E7001B1497 /* WAVideoBox */;
+			targetProxy = 3B9027E121E1F2E9001B1497 /* PBXContainerItemProxy */;
+		};
+		3B9027ED21E1F2E9001B1497 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B9027C721E1F2E7001B1497 /* WAVideoBox */;
+			targetProxy = 3B9027EC21E1F2E9001B1497 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3B9027D121E1F2E7001B1497 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B9027D221E1F2E7001B1497 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3B9027D621E1F2E9001B1497 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B9027D721E1F2E9001B1497 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3B9027F221E1F2E9001B1497 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3B9027F321E1F2E9001B1497 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3B9027F521E1F2E9001B1497 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 55RAX8ZP36;
+				INFOPLIST_FILE = WAVideoBox/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cn.doudle.videoBox.WAVideoBox;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3B9027F621E1F2E9001B1497 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 55RAX8ZP36;
+				INFOPLIST_FILE = WAVideoBox/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cn.doudle.videoBox.WAVideoBox;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3B9027F821E1F2E9001B1497 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 55RAX8ZP36;
+				INFOPLIST_FILE = WAVideoBoxTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cn.doudle.videoBox.WAVideoBoxTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WAVideoBox.app/WAVideoBox";
+			};
+			name = Debug;
+		};
+		3B9027F921E1F2E9001B1497 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 55RAX8ZP36;
+				INFOPLIST_FILE = WAVideoBoxTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cn.doudle.videoBox.WAVideoBoxTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WAVideoBox.app/WAVideoBox";
+			};
+			name = Release;
+		};
+		3B9027FB21E1F2E9001B1497 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 55RAX8ZP36;
+				INFOPLIST_FILE = WAVideoBoxUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cn.doudle.videoBox.WAVideoBoxUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WAVideoBox;
+			};
+			name = Debug;
+		};
+		3B9027FC21E1F2E9001B1497 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 55RAX8ZP36;
+				INFOPLIST_FILE = WAVideoBoxUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cn.doudle.videoBox.WAVideoBoxUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WAVideoBox;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3B9027C321E1F2E7001B1497 /* Build configuration list for PBXProject "WAVideoBox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B9027F221E1F2E9001B1497 /* Debug */,
+				3B9027F321E1F2E9001B1497 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B9027F421E1F2E9001B1497 /* Build configuration list for PBXNativeTarget "WAVideoBox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B9027F521E1F2E9001B1497 /* Debug */,
+				3B9027F621E1F2E9001B1497 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B9027F721E1F2E9001B1497 /* Build configuration list for PBXNativeTarget "WAVideoBoxTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B9027F821E1F2E9001B1497 /* Debug */,
+				3B9027F921E1F2E9001B1497 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B9027FA21E1F2E9001B1497 /* Build configuration list for PBXNativeTarget "WAVideoBoxUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B9027FB21E1F2E9001B1497 /* Debug */,
+				3B9027FC21E1F2E9001B1497 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3B9027C021E1F2E7001B1497 /* Project object */;
+}
