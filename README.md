@@ -13,7 +13,9 @@ PS ：支持多线程处理
 使用指导
 =====================
 
-常规操作直接append + 操作 + finish，各种骚操作组合请参照文尾
+常规操作: append一个视频 + 操作命令 + finish
+组合操作：将所有视频append，操作命令 * n，finish
+骚操作：参照文尾
 
 下列代码均跑于6s 12.0系统
 
@@ -22,11 +24,11 @@ PS ：支持多线程处理
 
 // 压缩:将19秒的视频进行压缩，  耗时<1秒, 成果 : 6.7M -> 335KB
 
-        [_videoBox appendVideoByPath:_videoPath];
-        [_videoBox rotateVideoByDegress:90];
-        [_videoBox asyncFinishEditByFilePath:filePath complete:^(NSError *error) {
-            // do it
-        }]; 
+    [_videoBox appendVideoByPath:_videoPath];
+    _videoBox.ratio = WAVideoExportRatioLowQuality;
+    [_videoBox asyncFinishEditByFilePath:filePath complete:^(NSError *error) {
+        // do it
+    }];
         
 // 拼接:将两个不同分辨率视频拼接（17秒的视频），  耗时<3秒 ，如果是相同分辩率的视频耗时<1秒
 
