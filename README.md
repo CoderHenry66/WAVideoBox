@@ -22,7 +22,7 @@ PS ：支持多线程处理
 常规操作: 三行代码
 =====================
 
-// 压缩:将19秒的视频进行压缩，  耗时<1秒, 成果 : 6.7M -> 335KB
+// 压缩:将19秒的视频进行压缩，  耗时<1秒, 成果 : 6.7M -> 335KB (高清压缩可设置ratio  videoQuality)
 
     [_videoBox appendVideoByPath:_videoPath];
     _videoBox.ratio = WAVideoExportRatioLowQuality;
