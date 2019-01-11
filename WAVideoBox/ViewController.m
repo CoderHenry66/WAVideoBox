@@ -92,7 +92,7 @@
     __weak typeof(self) wself = self;
     
     [_videoBox appendVideoByPath:_videoPath];
-    [_videoBox appendWaterMark:[UIImage imageNamed:@"waterMark"] relativeRect:CGRectMake(0.7, 0.7, 0.2, 0.12)];
+    [_videoBox appendWaterMark:[UIImage imageNamed:@"waterMark"] relativeRect:CGRectMake(0.7, 0.2, 0.2, 0)];
     
     [_videoBox asyncFinishEditByFilePath:filePath complete:^(NSError *error) {
         if (!error) {
@@ -192,7 +192,7 @@
     [_videoBox appendVideoByPath:_videoPath];
     [_videoBox appendVideoByPath:_testThreePath];
     [_videoBox replaceSoundBySoundPath:_testTwoPath];
-    [_videoBox appendWaterMark:[UIImage imageNamed:@"waterMark"] relativeRect:CGRectMake(0.7, 0.7, 0.2, 0.1)];
+    [_videoBox appendWaterMark:[UIImage imageNamed:@"waterMark"] relativeRect:CGRectMake(0.7, 0.2, 0.2, 0)];
     
     [_videoBox rotateVideoByDegress:180];
     [_videoBox dubbedSoundBySoundPath:_testOnePath];
@@ -228,7 +228,7 @@
     [_videoBox rangeVideoByTimeRange:CMTimeRangeMake(kCMTimeZero, CMTimeMake(3600, 600))];
     
     [_videoBox appendVideoByPath:_testOnePath];
-    [_videoBox appendWaterMark:[UIImage imageNamed:@"waterMark"] relativeRect:CGRectMake(0.7, 0.7, 0.2, 0.12)];
+    [_videoBox appendWaterMark:[UIImage imageNamed:@"waterMark"] relativeRect:CGRectMake(0.7, 0.2, 0.2, 0)];
     [_videoBox rangeVideoByTimeRange:CMTimeRangeMake(CMTimeMake(3600, 600), CMTimeMake(3600, 600))];
     
     [_videoBox appendVideoByPath:_testTwoPath];

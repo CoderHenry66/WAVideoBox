@@ -110,13 +110,11 @@
 
 - (void)converRect:(CALayer *)layer naturalRenderSize:(CGSize)size renderSize:(CGSize)renderSize{
     
-    
-    
     if (!CGSizeEqualToSize(size, renderSize)) {
         // 还原绝对位置
-        CGRect relativeRect = CGRectMake(layer.frame.origin.x / size.width, 1 - (layer.frame.origin.y + layer.bounds.size.height) / size.height, layer.bounds.size.width / size.width, layer.bounds.size.height / size.height);
+        CGRect relativeRect = CGRectMake(layer.frame.origin.x / size.width, layer.frame.origin.y / size.height, layer.bounds.size.width / size.width, layer.bounds.size.height / size.height);
         
-        layer.frame = CGRectMake(renderSize.width * relativeRect.origin.x,renderSize.height * (1 - relativeRect.origin.y) - renderSize.height * relativeRect.size.height,renderSize.width * relativeRect.size.width, renderSize.height * relativeRect.size.height);
+        layer.frame = CGRectMake(renderSize.width * relativeRect.origin.x,renderSize.height * relativeRect.origin.y,renderSize.width * relativeRect.size.width, renderSize.height * relativeRect.size.height);
         
     }
 }

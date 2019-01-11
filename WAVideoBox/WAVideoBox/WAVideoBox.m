@@ -252,8 +252,17 @@ void runAsynchronouslyOnVideoBoxContextQueue(void (^block)(void))
             WAAVSEImageMixCommand *command = [[WAAVSEImageMixCommand alloc] initWithComposition:composition];
             command.imageBg = NO;
             command.image = waterImg;
+           
+           
             [command imageLayerRectWithVideoSize:^CGRect(CGSize videoSize) {
-                return CGRectMake(videoSize.width * relativeRect.origin.x,videoSize.height * (1 - relativeRect.origin.y) - videoSize.height * relativeRect.size.height,videoSize.width * relativeRect.size.width, videoSize.height * relativeRect.size.height);
+                
+                CGFloat height = 0;
+                if (relativeRect.size.height) {
+                    height = videoSize.height * relativeRect.size.height;
+                }else{
+                    height = videoSize.width * relativeRect.size.width * waterImg.size.height / waterImg.size.width;
+                }
+                return CGRectMake(videoSize.width * relativeRect.origin.x,videoSize.height * relativeRect.origin.y,videoSize.width * relativeRect.size.width, height);
             }];
             [command performWithAsset:composition.mutableComposition];
         }

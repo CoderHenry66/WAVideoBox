@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
-#import "WAAVSEGearboxCommand.h"
+#import "WAAVSEGearboxCommandModel.h"
 typedef NS_ENUM(NSUInteger,WAVideoExportRatio) {
     WAVideoExportRatioLowQuality,// 自动分辩率
     WAVideoExportRatioMediumQuality,// 自动分辩率
@@ -81,7 +81,6 @@ typedef NS_ENUM(NSUInteger,WAVideoExportRatio) {
  */
 - (BOOL)rangeVideoByTimeRange:(CMTimeRange)range;
 
-
 /**
  视频截取
 
@@ -102,7 +101,7 @@ typedef NS_ENUM(NSUInteger,WAVideoExportRatio) {
 /**
  为视频加入水印
  @param waterImg 图片
- @param relativeRect 相对尺寸 x ,y , width , height值均为 (0 ~ 1)
+ @param relativeRect 相对视频尺寸对比(0~1)), x(与视频左部的距离为VideoWidth * x) ,y (与视频底部的距离为VideoHeight * y), width (图片宽度为VideoWidth * width),height(图片高度为VideoHeight * height)，height可以直接设为零即为等比缩放
  @return 操作状态
  */
 - (BOOL)appendWaterMark:(UIImage *)waterImg relativeRect:(CGRect)relativeRect;
