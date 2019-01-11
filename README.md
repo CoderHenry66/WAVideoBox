@@ -8,6 +8,8 @@ WAVideoBox是一款基于AVFoundation视频操作框架，用短短几行代码�
 尤其是不同分辩率视频的组合操作，如，给A视频变速，给B视频加水印，把C视频旋转...把ABC..视频合并，再操作合并视频...循环...
 用WAVideoBox能快速高效实现上述功能。
 
+!(骚操作)(http://github.com/Huangruihao/WAVideoBox/blob/master/Sources-/euSAMGzK0P.gif)   
+
 PS ：支持多线程处理
 
 iOS 8.0 ++
@@ -33,6 +35,9 @@ iOS 8.0 ++
     [_videoBox asyncFinishEditByFilePath:filePath complete:^(NSError *error) {
         // do it
     }];
+    // 还可通过自行设定分辩率，再通过videoQuality(1-10档)来做视频压缩
+        
+!(压缩)(http://github.com/Huangruihao/WAVideoBox/blob/master/Sources-/FLVh4VqcrI.gif)        
         
 // 拼接:将两个不同分辨率视频拼接（17秒的视频），  耗时<3秒 ，如果是相同分辩率的视频耗时<1秒
 
@@ -106,6 +111,8 @@ iOS 8.0 ++
     [_videoBox asyncFinishEditByFilePath:filePath complete:^(NSError * error) {
             // do it
     }];
+
+    
 
 Box分析
 =====================
