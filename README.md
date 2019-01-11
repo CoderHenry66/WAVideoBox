@@ -26,14 +26,22 @@ iOS 8.0 ++
 常规操作: 三行代码
 =====================
 
-// 压缩:将19秒的视频进行压缩，  耗时<1秒, 成果 : 6.7M -> 335KB (高清压缩可设置ratio  videoQuality)
-
+// 压缩:将19秒的视频进行压缩，  耗时<1秒, 成果 : 6.7M -> 335KB (有损压缩，高清压缩可设置ratio  videoQuality)
+    
+    // 第一种：自动压缩，分low ,medium , high 三档
     [_videoBox appendVideoByPath:_videoPath];
-    _videoBox.ratio = WAVideoExportRatioLowQuality;
+    _videoBox.ratio = WAVideoExportRatioLowQuality;//有损压缩
     [_videoBox asyncFinishEditByFilePath:filePath complete:^(NSError *error) {
         // do it
     }];
-    // 还可通过自行设定分辩率，再通过videoQuality(1-10档)来做视频压缩
+    
+    // 第二种：通过自行设定分辩率，实现高清压缩
+    [_videoBox appendVideoByPath:_videoPath];
+    _videoBox.ratio = WAVideoExportRatio640x480;
+        // _videoBox.vidoQuality = 6;还可以通过设置videoQuality进行精准压缩
+    [_videoBox asyncFinishEditByFilePath:filePath complete:^(NSError *error) {
+        // do it
+    }];
         
 ![压缩](http://g.recordit.co/FLVh4VqcrI.gif)        
         
