@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B222FF921E863DC0056CE83 /* WAAVSEExtractSoundCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B222FF821E863DC0056CE83 /* WAAVSEExtractSoundCommand.m */; };
 		3B9027CD21E1F2E7001B1497 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9027CC21E1F2E7001B1497 /* AppDelegate.m */; };
 		3B9027D021E1F2E7001B1497 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9027CF21E1F2E7001B1497 /* ViewController.m */; };
 		3B9027D321E1F2E7001B1497 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9027D121E1F2E7001B1497 /* Main.storyboard */; };
@@ -52,6 +53,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B222FF721E863DC0056CE83 /* WAAVSEExtractSoundCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAAVSEExtractSoundCommand.h; sourceTree = "<group>"; };
+		3B222FF821E863DC0056CE83 /* WAAVSEExtractSoundCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAAVSEExtractSoundCommand.m; sourceTree = "<group>"; };
 		3B9027C821E1F2E7001B1497 /* WAVideoBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WAVideoBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B9027CB21E1F2E7001B1497 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3B9027CC21E1F2E7001B1497 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -218,6 +221,8 @@
 				3B90281621E1F2F3001B1497 /* WAAVSEVideoMixCommand.m */,
 				3B90280B21E1F2F3001B1497 /* WAAVSEDubbedCommand.h */,
 				3B90281421E1F2F3001B1497 /* WAAVSEDubbedCommand.m */,
+				3B222FF721E863DC0056CE83 /* WAAVSEExtractSoundCommand.h */,
+				3B222FF821E863DC0056CE83 /* WAAVSEExtractSoundCommand.m */,
 			);
 			path = WAAVSeCommand;
 			sourceTree = "<group>";
@@ -375,6 +380,7 @@
 				3B90281E21E1F2F3001B1497 /* WAAVSECommand.m in Sources */,
 				3B90281A21E1F2F3001B1497 /* WAAVSEImageMixCommand.m in Sources */,
 				3B90282321E1F2F3001B1497 /* WAAVSEDubbedCommand.m in Sources */,
+				3B222FF921E863DC0056CE83 /* WAAVSEExtractSoundCommand.m in Sources */,
 				3B90282121E1F2F3001B1497 /* WAAVSEReplaceSoundCommand.m in Sources */,
 				3B9027DB21E1F2E9001B1497 /* main.m in Sources */,
 				3B90281B21E1F2F3001B1497 /* WAAVSEGearboxCommand.m in Sources */,
