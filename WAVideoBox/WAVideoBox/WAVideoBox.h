@@ -81,6 +81,16 @@ typedef NS_ENUM(NSUInteger,WAVideoExportRatio) {
  */
 - (BOOL)rangeVideoByTimeRange:(CMTimeRange)range;
 
+
+/**
+ 视频截取
+
+ @param beganPoint 开始的节点
+ @param endPoint 结束的节点
+ @return 操作状态
+ */
+- (BOOL)rangeVideoByBeganPoint:(CGFloat)beganPoint endPoint:(CGFloat)endPoint;
+
 /**
  视频旋转
  @param degress 角度，内部会调用%90,保证90度的倍数旋转
@@ -127,6 +137,14 @@ typedef NS_ENUM(NSUInteger,WAVideoExportRatio) {
  @return 操作状态
  */
 - (BOOL)dubbedSoundBySoundPath:(NSString *)soundPath volume:(CGFloat)volume mixVolume:(CGFloat)mixVolume insertTime:(CGFloat)insetDuration;
+
+#pragma mark 音频提取
+
+/**
+ 音频提取，操作后视频将变为音频
+ @return 操作状态
+ */
+- (BOOL)extractVideoSound; 
 
 #pragma mark 处理
 /**

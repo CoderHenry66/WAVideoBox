@@ -38,6 +38,10 @@
         self.composition.presetName = AVAssetExportPresetHighestQuality;
     }
     
+    if (!self.composition.fileType) {
+        self.composition.fileType = AVFileTypeMPEG4;
+    }
+    
     self.exportSession = [[AVAssetExportSession alloc] initWithAsset:asset presetName:self.composition.presetName];
     self.exportSession.shouldOptimizeForNetworkUse = YES;
     self.exportSession.videoComposition = self.composition.mutableVideoComposition;
@@ -62,10 +66,9 @@
         }
        
     }
-
     
     self.exportSession.outputURL = [NSURL fileURLWithPath:path];
-    self.exportSession.outputFileType = AVFileTypeMPEG4;
+    self.exportSession.outputFileType = self.composition.fileType;
     [self.exportSession exportAsynchronouslyWithCompletionHandler:^(void){
 
         switch (self.exportSession.status) {

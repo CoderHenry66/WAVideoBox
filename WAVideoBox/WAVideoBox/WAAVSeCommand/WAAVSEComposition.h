@@ -43,6 +43,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , assign) NSInteger videoQuality;
 
 /**
+ 输出文件格式
+ */
+@property (nonatomic , copy) AVFileType fileType;
+
+/**
  视频操作参数数组
  */
 @property (nonatomic , strong) NSMutableArray <AVMutableVideoCompositionInstruction *> *instructions; 

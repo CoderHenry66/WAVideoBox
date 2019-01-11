@@ -17,6 +17,7 @@
 #import "WAAVSERangeCommand.h"
 #import "WAAVSERotateCommand.h"
 #import "WAAVSEDubbedCommand.h"
+#import "WAAVSEExtractSoundCommand.h"
 #import <pthread.h>
 
 @interface WAVideoBox ()
@@ -47,43 +48,50 @@
 
 @end
 
-dispatch_queue_t _contextQueue;
-static void *contextQueueKey = &contextQueueKey;
+dispatch_queue_t _videoBoxContextQueue;
+static void *videoBoxContextQueueKey = &videoBoxContextQueueKey;
 
-dispatch_queue_t _processQueue;
-static void *processQueueKey = &processQueueKey;
+dispatch_queue_t _videoBoxProcessQueue;
+static void *videoBoxProcessQueueKey = &videoBoxProcessQueueKey;
 
 NSString *_tmpDirectory;
 
 
-void runSynchronouslyOnVideoProcessingQueue(void (^block)(void))
+void runSynchronouslyOnVideoBoxProcessingQueue(void (^block)(void))
 {
-    if (dispatch_get_specific(processQueueKey)){
+    if (dispatch_get_specific(videoBoxProcessQueueKey)){
         block();
     }else{
-        dispatch_sync(_processQueue, block);
+        dispatch_sync(_videoBoxProcessQueue, block);
     }
 }
 
-void runAsynchronouslyOnVideoProcessingQueue(void (^block)(void))
+void runAsynchronouslyOnVideoBoxProcessingQueue(void (^block)(void))
 {
     
-    dispatch_async(_processQueue, block);
-}
-
-void runSynchronouslyOnVideoContextQueue(void (^block)(void))
-{
-    if (dispatch_get_specific(contextQueueKey)){
+    if (dispatch_get_specific(videoBoxProcessQueueKey)){
         block();
     }else{
-        dispatch_sync(_contextQueue, block);
+        dispatch_async(_videoBoxProcessQueue, block);
     }
 }
 
-void runAsynchronouslyOnVideoContextQueue(void (^block)(void))
+void runSynchronouslyOnVideoBoxContextQueue(void (^block)(void))
 {
-    
-    dispatch_async(_contextQueue, block);
+    if (dispatch_get_specific(videoBoxContextQueueKey)){
+        block();
+    }else{
+        dispatch_sync(_videoBoxContextQueue, block);
+    }
+}
+
+void runAsynchronouslyOnVideoBoxContextQueue(void (^block)(void))
+{
+    if (dispatch_get_specific(videoBoxContextQueueKey)){
+        block();
+    }else{
+        dispatch_async(_videoBoxContextQueue, block);
+    }
 }
 
 @implementation WAVideoBox
@@ -94,13 +102,12 @@ void runAsynchronouslyOnVideoContextQueue(void (^block)(void))
     dispatch_once(&onceToken, ^{
         _tmpDirectory = [NSTemporaryDirectory() stringByAppendingPathComponent:@"WAVideoBoxTmp"];
       
-        processQueueKey = &processQueueKey;
         
-        _contextQueue = dispatch_queue_create("VideoBoxContextQueue", DISPATCH_QUEUE_SERIAL);
-        dispatch_queue_set_specific(_contextQueue, contextQueueKey, &contextQueueKey, NULL);
+        _videoBoxContextQueue = dispatch_queue_create("VideoBoxContextQueue", DISPATCH_QUEUE_SERIAL);
+        dispatch_queue_set_specific(_videoBoxContextQueue, videoBoxContextQueueKey, &videoBoxContextQueueKey, NULL);
         
-        _processQueue = dispatch_queue_create("VideoBoxProcessQueue", DISPATCH_QUEUE_SERIAL);
-        dispatch_queue_set_specific(_processQueue, processQueueKey, &processQueueKey, NULL);
+        _videoBoxProcessQueue = dispatch_queue_create("VideoBoxProcessQueue", DISPATCH_QUEUE_SERIAL);
+        dispatch_queue_set_specific(_videoBoxProcessQueue, videoBoxProcessQueueKey, &videoBoxProcessQueueKey, NULL);
     
         if (![[NSFileManager defaultManager] fileExistsAtPath:_tmpDirectory]) {
             [[NSFileManager defaultManager] createDirectoryAtPath:_tmpDirectory withIntermediateDirectories:YES attributes:nil error:NULL];
@@ -121,7 +128,7 @@ void runAsynchronouslyOnVideoContextQueue(void (^block)(void))
 
 - (void)dealloc{
     if (self.isSuspend) {
-        dispatch_resume(_contextQueue);
+        dispatch_resume(_videoBoxContextQueue);
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -145,11 +152,11 @@ void runAsynchronouslyOnVideoContextQueue(void (^block)(void))
         return NO;
     }
     
-    runSynchronouslyOnVideoProcessingQueue(^{ // 取消指令
+    runSynchronouslyOnVideoBoxProcessingQueue(^{ // 取消指令
         self.cancel = NO;
     });
     
-    runAsynchronouslyOnVideoContextQueue(^{
+    runAsynchronouslyOnVideoBoxContextQueue(^{
         // 清空工作区
         [self commitCompostionToComposespace];
         
@@ -170,7 +177,7 @@ void runAsynchronouslyOnVideoContextQueue(void (^block)(void))
 
 - (void)commit{
     
-    runAsynchronouslyOnVideoContextQueue(^{
+    runAsynchronouslyOnVideoBoxContextQueue(^{
   
         [self.workSpace insertObjects:self.composeSpace atIndexes:[[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, self.composeSpace.count)]];
         
@@ -183,9 +190,25 @@ void runAsynchronouslyOnVideoContextQueue(void (^block)(void))
 }
 
 #pragma mark 裁剪
+
+- (BOOL)rangeVideoByBeganPoint:(CGFloat)beganPoint endPoint:(CGFloat)endPoint{
+    runAsynchronouslyOnVideoBoxContextQueue(^{
+        
+        [self commitCompostionToWorkspace];
+        for (WAAVSEComposition *composition in self.workSpace) {
+            double duration  = CMTimeGetSeconds(composition.duration);
+            CMTime timeFrom = CMTimeMake(beganPoint / duration  * composition.duration.value, composition.duration.timescale);
+            CMTime timeTo = CMTimeMake((endPoint  - beganPoint)/ duration * composition.duration.value, composition.duration.timescale);
+            [self rangeVideoByTimeRange:CMTimeRangeMake(timeFrom, timeTo)];
+        }
+    });
+    
+    return YES;
+}
+
 - (BOOL)rangeVideoByTimeRange:(CMTimeRange)range{
     
-    runAsynchronouslyOnVideoContextQueue(^{
+    runAsynchronouslyOnVideoBoxContextQueue(^{
 
         [self commitCompostionToWorkspace];
         
@@ -200,7 +223,7 @@ void runAsynchronouslyOnVideoContextQueue(void (^block)(void))
 
 - (BOOL)rotateVideoByDegress:(NSInteger)degress{
     
-    runAsynchronouslyOnVideoContextQueue(^{
+    runAsynchronouslyOnVideoBoxContextQueue(^{
 
         [self commitCompostionToWorkspace];
         
@@ -221,7 +244,7 @@ void runAsynchronouslyOnVideoContextQueue(void (^block)(void))
         return NO;
     }
     
-    runAsynchronouslyOnVideoContextQueue(^{
+    runAsynchronouslyOnVideoBoxContextQueue(^{
         
         [self commitCompostionToWorkspace];
         
@@ -243,7 +266,7 @@ void runAsynchronouslyOnVideoContextQueue(void (^block)(void))
 #pragma mark 变速
 - (BOOL)gearBoxWithScale:(CGFloat)scale{
     
-    runAsynchronouslyOnVideoContextQueue(^{
+    runAsynchronouslyOnVideoBoxContextQueue(^{
         [self commitCompostionToWorkspace];
         
         for (WAAVSEComposition *composition in self.workSpace) {
@@ -261,7 +284,7 @@ void runAsynchronouslyOnVideoContextQueue(void (^block)(void))
     }
     
 
-    runAsynchronouslyOnVideoContextQueue(^{
+    runAsynchronouslyOnVideoBoxContextQueue(^{
        
         [self commitCompostionToWorkspace];
         
@@ -287,7 +310,7 @@ void runAsynchronouslyOnVideoContextQueue(void (^block)(void))
     if (!soundAsset.playable) {
         return NO;
     }
-    runAsynchronouslyOnVideoContextQueue(^{
+    runAsynchronouslyOnVideoBoxContextQueue(^{
         [self commitCompostionToWorkspace];
         
         for (WAAVSEComposition *composition in self.workSpace) {
@@ -317,7 +340,7 @@ void runAsynchronouslyOnVideoContextQueue(void (^block)(void))
         return NO;
     }
     
-    runAsynchronouslyOnVideoContextQueue(^{
+    runAsynchronouslyOnVideoBoxContextQueue(^{
         [self commitCompostionToWorkspace];
         for (WAAVSEComposition *composition in self.workSpace) {
             WAAVSEDubbedCommand *command = [[WAAVSEDubbedCommand alloc] initWithComposition:composition];
@@ -331,23 +354,36 @@ void runAsynchronouslyOnVideoContextQueue(void (^block)(void))
     return YES;
 }
 
+- (BOOL)extractVideoSound{
+    
+    runAsynchronouslyOnVideoBoxContextQueue(^{
+        [self commitCompostionToWorkspace];
+        for (WAAVSEComposition *composition in self.workSpace) {
+            WAAVSEExtractSoundCommand *command = [[WAAVSEExtractSoundCommand alloc] initWithComposition:composition];
+            [command performWithAsset:composition.mutableComposition];
+        }
+    });
+    
+    return YES;
+}
+
 #pragma mark video edit
 
 - (void)syncFinishEditByFilePath:(NSString *)filePath complete:(void (^)(NSError *))complete{
-    runSynchronouslyOnVideoContextQueue(^{
+    runSynchronouslyOnVideoBoxContextQueue(^{
         [self finishEditByFilePath:filePath complete:complete];
     });
 }
 
 - (void)asyncFinishEditByFilePath:(NSString *)filePath complete:(void (^)(NSError *))complete{
-    runAsynchronouslyOnVideoContextQueue(^{
+    runAsynchronouslyOnVideoBoxContextQueue(^{
         [self finishEditByFilePath:filePath complete:complete];
     });
 }
 
 - (void)cancelEdit{
     
-    runSynchronouslyOnVideoProcessingQueue(^{
+    runSynchronouslyOnVideoBoxProcessingQueue(^{
         self.cancel = YES;
         if (self.exportCommand.exportSession.status == AVAssetExportSessionStatusExporting) {
             [self.exportCommand.exportSession cancelExport];
@@ -358,7 +394,7 @@ void runAsynchronouslyOnVideoContextQueue(void (^block)(void))
 
 - (void)clean{
     
-    runAsynchronouslyOnVideoContextQueue(^{
+    runAsynchronouslyOnVideoBoxContextQueue(^{
         [self __internalClean];
     });
 
@@ -478,7 +514,7 @@ void runAsynchronouslyOnVideoContextQueue(void (^block)(void))
     
     if (self.suspend) {
         self.suspend = NO;
-        dispatch_resume(_contextQueue);
+        dispatch_resume(_videoBoxContextQueue);
     }
     
 }
@@ -495,7 +531,7 @@ void runAsynchronouslyOnVideoContextQueue(void (^block)(void))
     
     if (self.suspend) {
         self.suspend = NO;
-        dispatch_resume(_contextQueue);
+        dispatch_resume(_videoBoxContextQueue);
     }
    
 }
@@ -514,10 +550,10 @@ void runAsynchronouslyOnVideoContextQueue(void (^block)(void))
     self.filePath = filePath;
     self.editorComplete = complete;
     
-    runSynchronouslyOnVideoProcessingQueue(^{
+    runSynchronouslyOnVideoBoxProcessingQueue(^{
         
         self.suspend = YES;
-        dispatch_suspend(_contextQueue);
+        dispatch_suspend(_videoBoxContextQueue);
         
         if (self.cancel) {
             [self failToProcessVideo:[NSError errorWithDomain:AVFoundationErrorDomain code:-10000 userInfo:@{NSLocalizedFailureReasonErrorKey:@"User cancel process!"}]];
@@ -538,7 +574,7 @@ void runAsynchronouslyOnVideoContextQueue(void (^block)(void))
 #pragma mark notification
 - (void)AVEditorNotification:(NSNotification *)notification{
     
-    runAsynchronouslyOnVideoProcessingQueue(^{
+    runAsynchronouslyOnVideoBoxProcessingQueue(^{
         if ([[notification name] isEqualToString:WAAVSEExportCommandCompletionNotification] && self.exportCommand == notification.object) {
             
             NSError *error = [notification.userInfo objectForKey:WAAVSEExportCommandError];
