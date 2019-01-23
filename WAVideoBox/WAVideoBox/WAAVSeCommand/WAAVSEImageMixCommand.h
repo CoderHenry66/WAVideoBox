@@ -10,9 +10,12 @@
 
 @interface WAAVSEImageMixCommand : WAAVSECommand
 
+
 @property (nonatomic , assign) BOOL imageBg;
 
 @property (nonatomic , strong) UIImage *image;
+
+@property (nonatomic , strong) NSURL *fileUrl;
 
 // 传回要放的图片位置
 - (void)imageLayerRectWithVideoSize:(CGRect (^) (CGSize videoSize))imageLayerRect;

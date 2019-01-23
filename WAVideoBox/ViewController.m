@@ -92,7 +92,7 @@
     __weak typeof(self) wself = self;
     
     [_videoBox appendVideoByPath:_videoPath];
-    [_videoBox appendWaterMark:[UIImage imageNamed:@"waterMark"] relativeRect:CGRectMake(0.7, 0.2, 0.2, 0)];
+    [_videoBox appendImages:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"gifTest" ofType:@"gif"]]  relativeRect:CGRectMake(0.6, 0.2, 0.3, 0)];
     
     [_videoBox asyncFinishEditByFilePath:filePath complete:^(NSError *error) {
         if (!error) {
@@ -205,7 +205,6 @@
             [wself goToPlayVideoByFilePath:filePath];
         }
     }];
-    
     
 }
 

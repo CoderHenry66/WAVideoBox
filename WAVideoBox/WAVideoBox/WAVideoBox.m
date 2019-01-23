@@ -223,6 +223,10 @@ void runAsynchronouslyOnVideoBoxContextQueue(void (^block)(void))
 
 - (BOOL)rotateVideoByDegress:(NSInteger)degress{
     
+    if (!degress % 360) {
+        return NO;
+    }
+    
     runAsynchronouslyOnVideoBoxContextQueue(^{
 
         [self commitCompostionToWorkspace];
@@ -270,6 +274,53 @@ void runAsynchronouslyOnVideoBoxContextQueue(void (^block)(void))
     });
     
     return YES;
+}
+
+- (BOOL)appendImages:(NSURL *)imagesUrl relativeRect:(CGRect)relativeRect{
+    
+    if (!imagesUrl) {
+        return NO;
+    }
+    
+    runAsynchronouslyOnVideoBoxContextQueue(^{
+        
+        [self commitCompostionToWorkspace];
+        
+        CGImageSourceRef gifSource = CGImageSourceCreateWithURL((CFURLRef)imagesUrl, NULL);
+        CGFloat gifWidth;
+        CGFloat gifHeight;
+        
+        NSDictionary *dict = (NSDictionary*)CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(gifSource, 0, NULL));
+        gifWidth = [[dict valueForKey:(NSString*)kCGImagePropertyPixelWidth] floatValue];
+        gifHeight = [[dict valueForKey:(NSString*)kCGImagePropertyPixelHeight] floatValue];
+        
+        if (gifSource) {
+            CFRelease(gifSource);
+        }
+        
+        for (WAAVSEComposition *composition in self.workSpace) {
+            WAAVSEImageMixCommand *command = [[WAAVSEImageMixCommand alloc] initWithComposition:composition];
+            command.imageBg = NO;
+            command.fileUrl = imagesUrl;
+            
+            
+            [command imageLayerRectWithVideoSize:^CGRect(CGSize videoSize) {
+                
+                CGFloat height = 0;
+                if (relativeRect.size.height) {
+                    height = videoSize.height * relativeRect.size.height;
+                }else{
+                    height = videoSize.width * relativeRect.size.width * gifHeight / gifWidth;
+                }
+                return CGRectMake(videoSize.width * relativeRect.origin.x,videoSize.height * relativeRect.origin.y,videoSize.width * relativeRect.size.width, height);
+            }];
+            [command performWithAsset:composition.mutableComposition];
+        }
+        
+    });
+    
+    return YES;
+    
 }
 
 #pragma mark 变速
@@ -417,6 +468,7 @@ void runAsynchronouslyOnVideoBoxContextQueue(void (^block)(void))
         }
     }
     
+    self.cacheComposition = nil;
     [self.tmpVideoSpace removeAllObjects];
     [self.workSpace removeAllObjects];
     [self.composeSpace removeAllObjects];

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B222FF921E863DC0056CE83 /* WAAVSEExtractSoundCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B222FF821E863DC0056CE83 /* WAAVSEExtractSoundCommand.m */; };
+		3B791E4521F8A43E00D58F16 /* gifTest.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3B791E4421F8A43E00D58F16 /* gifTest.gif */; };
 		3B9027CD21E1F2E7001B1497 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9027CC21E1F2E7001B1497 /* AppDelegate.m */; };
 		3B9027D021E1F2E7001B1497 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9027CF21E1F2E7001B1497 /* ViewController.m */; };
 		3B9027D321E1F2E7001B1497 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9027D121E1F2E7001B1497 /* Main.storyboard */; };
@@ -55,6 +56,7 @@
 /* Begin PBXFileReference section */
 		3B222FF721E863DC0056CE83 /* WAAVSEExtractSoundCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAAVSEExtractSoundCommand.h; sourceTree = "<group>"; };
 		3B222FF821E863DC0056CE83 /* WAAVSEExtractSoundCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAAVSEExtractSoundCommand.m; sourceTree = "<group>"; };
+		3B791E4421F8A43E00D58F16 /* gifTest.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gifTest.gif; sourceTree = "<group>"; };
 		3B9027C821E1F2E7001B1497 /* WAVideoBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WAVideoBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B9027CB21E1F2E7001B1497 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3B9027CC21E1F2E7001B1497 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 		3B90282E21E1FF16001B1497 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				3B791E4421F8A43E00D58F16 /* gifTest.gif */,
 				3BD923A921E44D8F007D85B8 /* test1.mp4 */,
 				3BCAF55521E72B8000663097 /* test2.mp4 */,
 				3B90282F21E1FF21001B1497 /* test3.mp4 */,
@@ -346,6 +349,7 @@
 				3B9027D321E1F2E7001B1497 /* Main.storyboard in Resources */,
 				3B90283421E1FF22001B1497 /* test3.mp4 in Resources */,
 				3BD923AA21E44D8F007D85B8 /* test1.mp4 in Resources */,
+				3B791E4521F8A43E00D58F16 /* gifTest.gif in Resources */,
 				3B90283821E1FF22001B1497 /* nature.mp4 in Resources */,
 				3BCAF55621E72B8000663097 /* test2.mp4 in Resources */,
 			);

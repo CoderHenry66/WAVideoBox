@@ -70,10 +70,9 @@
             
             self.trackDegress = [self degressFromTransform:self.assetVideoTrack.preferredTransform];
            
+            self.composition.mutableComposition.naturalSize = compostionVideoTrack.naturalSize;
             if (self.trackDegress % 360) {
                 [self performVideoCompopsition];
-            }else{
-                self.composition.mutableComposition.naturalSize = compostionVideoTrack.naturalSize;
             }
             
         }
@@ -136,55 +135,6 @@
     }
 }
 
-
-- (void)performWithAsset:(AVAsset *)asset degress:(NSUInteger)degress{
-    
-    [self performVideoCompopsition];
-    
-    AVMutableVideoCompositionInstruction *instruction = nil;
-    AVMutableVideoCompositionLayerInstruction *layerInstruction = nil;
-    CGAffineTransform t1;
-    CGAffineTransform t2;
-    CGSize renderSize;
-    
-    // 角度调整
-    degress -= degress % 360 % 90;
-   
-    if (degress == 90) {
-        t1 = CGAffineTransformMakeTranslation(self.composition.mutableVideoComposition.renderSize.height, 0.0);
-        renderSize = CGSizeMake(self.composition.mutableVideoComposition.renderSize.height, self.composition.mutableVideoComposition.renderSize.width);
-    }else if (degress == 180){
-        t1 = CGAffineTransformMakeTranslation(self.composition.mutableVideoComposition.renderSize.width, self.composition.mutableVideoComposition.renderSize.height);
-        renderSize = CGSizeMake(self.composition.mutableVideoComposition.renderSize.width, self.composition.mutableVideoComposition.renderSize.height);
-    }else if (degress == 270){
-        t1 = CGAffineTransformMakeTranslation(0.0, self.composition.mutableVideoComposition.renderSize.width);
-        renderSize = CGSizeMake(self.composition.mutableVideoComposition.renderSize.height, self.composition.mutableVideoComposition.renderSize.width);
-    }else{
-        t1 = CGAffineTransformMakeTranslation(0.0, 0.0);
-        renderSize = CGSizeMake(self.composition.mutableVideoComposition.renderSize.width, self.composition.mutableVideoComposition.renderSize.height);
-    }
-    
-    // Rotate transformation
-    t2 = CGAffineTransformRotate(t1, (degress / 180.0) * M_PI );
-   
-    self.composition.mutableComposition.naturalSize = self.composition.mutableVideoComposition.renderSize = renderSize;
-    
-    instruction = (AVMutableVideoCompositionInstruction *)(self.composition.mutableVideoComposition.instructions)[0];
-    layerInstruction = (AVMutableVideoCompositionLayerInstruction *)(instruction.layerInstructions)[0];
-    
-    CGAffineTransform existingTransform;
-    
-    if (![layerInstruction getTransformRampForTime:[self.composition.mutableComposition duration] startTransform:&existingTransform endTransform:NULL timeRange:NULL]) {
-        [layerInstruction setTransform:t2 atTime:kCMTimeZero];
-    } else {
-        CGAffineTransform newTransform =  CGAffineTransformConcat(existingTransform, t2);
-        [layerInstruction setTransform:newTransform atTime:kCMTimeZero];
-    }
-    
-    instruction.layerInstructions = @[layerInstruction];
-    self.composition.mutableVideoComposition.instructions = @[instruction];
-    
-}
 
 - (NSUInteger)degressFromTransform:(CGAffineTransform)transForm
 {

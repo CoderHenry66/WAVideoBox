@@ -98,13 +98,26 @@ typedef NS_ENUM(NSUInteger,WAVideoExportRatio) {
 - (BOOL)rotateVideoByDegress:(NSInteger)degress;
 
 #pragma mark 水印
+
+/*
+ relativeRect 相对视频尺寸对比(0~1)), x(与视频左部的距离为VideoWidth * x) ,y (与视频底部的距离为VideoHeight * y), width (图片宽度为VideoWidth * width),height(图片高度为VideoHeight * height)，height可以直接设为零即为等比缩放
+*/
+
 /**
  为视频加入水印
  @param waterImg 图片
- @param relativeRect 相对视频尺寸对比(0~1)), x(与视频左部的距离为VideoWidth * x) ,y (与视频底部的距离为VideoHeight * y), width (图片宽度为VideoWidth * width),height(图片高度为VideoHeight * height)，height可以直接设为零即为等比缩放
+ @param relativeRect 如上
  @return 操作状态
  */
 - (BOOL)appendWaterMark:(UIImage *)waterImg relativeRect:(CGRect)relativeRect;
+
+/**
+ 为视频加入水印
+ @param imagesUrl 动图地址
+ @param relativeRect 如上
+ @return 操作状态
+ */
+- (BOOL)appendImages:(NSURL *)imagesUrl relativeRect:(CGRect)relativeRect;
 
 #pragma mark 变速
 /**

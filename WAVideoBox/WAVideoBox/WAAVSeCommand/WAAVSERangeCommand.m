@@ -15,7 +15,7 @@
     [super performWithAsset:asset];
 
     if (CMTimeCompare(self.composition.duration, CMTimeAdd(range.start, range.duration)) != 1) {
-//        NSAssert(NO, @"Range out of video duration");
+        NSAssert(NO, @"Range out of video duration");
     }
     
     // 轨道裁剪

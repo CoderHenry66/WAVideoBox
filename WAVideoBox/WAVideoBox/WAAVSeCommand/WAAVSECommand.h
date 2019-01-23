@@ -44,13 +44,7 @@
   */
 - (NSUInteger)degressFromTransform:(CGAffineTransform)transForm;
 
-/**
- 画布旋转
 
- @param asset asset
- @param degress 角度
- */
-- (void)performWithAsset:(AVAsset *)asset degress:(NSUInteger)degress;
 
 @end
 

@@ -43,6 +43,7 @@
     }
     
     self.exportSession = [[AVAssetExportSession alloc] initWithAsset:asset presetName:self.composition.presetName];
+   
     self.exportSession.shouldOptimizeForNetworkUse = YES;
     self.exportSession.videoComposition = self.composition.mutableVideoComposition;
     self.exportSession.audioMix = self.composition.mutableAudioMix;
