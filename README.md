@@ -50,7 +50,7 @@ V 1.0.2 更新
         // do it
     }];
         
-![压缩](http://g.recordit.co/FLVh4VqcrI.gif)        
+![压缩](https://img-blog.csdnimg.cn/20190128171613315.gif#pic_center)        
         
 // 拼接:将两个不同分辨率视频拼接（17秒的视频），  耗时<3秒 ，如果是相同分辩率的视频耗时<1秒
 
@@ -125,7 +125,7 @@ V 1.0.2 更新
             // do it
     }];
     
-![骚操作](http://recordit.co/euSAMGzK0P.gif)   
+![骚操作](https://img-blog.csdnimg.cn/20190128171430628.gif#pic_center)   
 
 Box分析
 =====================
