@@ -3,8 +3,6 @@
 iOS 8.0 +  
 有需要的功能或错误欢迎issue，笔者会及时更新
 
-======================
-
 WAVideoBox是一款基于AVFoundation视频操作框架，用短短几行代码就可完成各种简单及至复杂的视频操作命令。使用简单，性能高超~
 
 尤其是不同分辩率视频的组合操作，如，给A视频变速，给B视频加水印，把C视频旋转...把ABC..视频合并，再操作合并视频...循环...
@@ -56,8 +54,10 @@ V 1.0.2 更新
 
     [_videoBox appendVideoByPath:_testThreePath];
     [_videoBox appendVideoByPath:_testTwoPath];
-    [_videoBox asyncFinishEditByFilePath:filePath complete:^(NSError *error) {
-        // do it
+    [_videoBox asyncFinishEditByFilePath:filePath progress:^(float progress) {
+        // do it 长时间的操作可以添加进度监控
+    }  complete:^(NSError * error) {
+        // do it 
     }];
     
 // 混音:给视频混上其他视频/音乐的声音 （19秒视频）, 耗时 < 1秒
@@ -88,8 +88,10 @@ V 1.0.2 更新
 
     [_videoBox rangeVideoByTimeRange:CMTimeRangeMake(CMTimeMake(2400, 600), CMTimeMake(3600, 600))];
 
-    [_videoBox asyncFinishEditByFilePath:filePath complete:^(NSError *error) {
-            // do it
+    [_videoBox asyncFinishEditByFilePath:filePath progress:^(float progress) {
+        // do it 长时间的操作可以添加进度监控
+    }  complete:^(NSError * error) {
+        // do it 
     }];
 
 骚操作 
@@ -121,8 +123,10 @@ V 1.0.2 更新
     [_videoBox commit];
     [_videoBox gearBoxWithScale:2];
 
-    [_videoBox asyncFinishEditByFilePath:filePath complete:^(NSError * error) {
-            // do it
+    [_videoBox asyncFinishEditByFilePath:filePath progress:^(float progress) {
+        // do it 长时间的操作可以添加进度监控
+    }  complete:^(NSError * error) {
+        // do it 
     }];
     
 ![骚操作](https://img-blog.csdnimg.cn/20190128171430628.gif)   
