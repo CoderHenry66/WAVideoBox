@@ -86,27 +86,6 @@
 }
 
 
-// 调整旋转
-- (NSUInteger)degressFromTransform:(CGAffineTransform)transForm
-{
-    NSUInteger degress = 0;
-    
-    if(transForm.a == 0 && transForm.b == 1.0 && transForm.c == -1.0 && transForm.d == 0){
-        // Portrait
-        degress = 90;
-    }else if(transForm.a == 0 && transForm.b == -1.0 && transForm.c == 1.0 && transForm.d == 0){
-        // PortraitUpsideDown
-        degress = 270;
-    }else if(transForm.a == 1.0 && transForm.b == 0 && transForm.c == 0 && transForm.d == 1.0){
-        // LandscapeRight
-        degress = 0;
-    }else if(transForm.a == -1.0 && transForm.b == 0 && transForm.c == 0 && transForm.d == -1.0){
-        // LandscapeLeft
-        degress = 180;
-    }
-    
-    return degress;
-}
 
 - (void)converRect:(CALayer *)layer naturalRenderSize:(CGSize)size renderSize:(CGSize)renderSize{
     

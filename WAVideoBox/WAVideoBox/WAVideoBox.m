@@ -20,17 +20,19 @@
 #import "WAAVSEExtractSoundCommand.h"
 #import <pthread.h>
 
-@interface WAVideoBox ()
+@interface WAVideoBox (){
+    CADisplayLink *_progressLink;
+}
 
 @property (nonatomic , strong) WAAVSEComposition *cacheComposition;
+
+@property (nonatomic , weak) WAAVSEExportCommand *exportCommand;
 
 @property (nonatomic , strong) NSMutableArray <WAAVSEComposition *>*workSpace;
 
 @property (nonatomic , strong) NSMutableArray <WAAVSEComposition *>*composeSpace;
 
-@property (nonatomic , strong) NSMutableArray <NSString *>*tmpVideoSpace;
-
-@property (nonatomic , weak) WAAVSEExportCommand *exportCommand;
+@property (nonatomic , strong) NSMutableArray <NSString *>*tmpVideoSpace; //临时视频文件
 
 @property (nonatomic , assign) NSInteger directCompostionIndex;
 
@@ -40,11 +42,15 @@
 
 @property (nonatomic , copy) void (^editorComplete)(NSError *error);
 
+@property (nonatomic , copy) void (^progress)(float progress);
+
 @property (nonatomic , copy) NSString *presetName;
+
+@property (nonatomic , assign) NSInteger composeCount; // 一共需要几次compose操作，用于记录进度
 
 @property (nonatomic , assign ,getter=isSuspend) BOOL suspend; //线程 挂起
 
-@property (nonatomic , assign ,getter=isCancel) BOOL cancel; //线程 挂起
+@property (nonatomic , assign ,getter=isCancel) BOOL cancel; //用户取消操作
 
 @end
 
@@ -430,19 +436,31 @@ void runAsynchronouslyOnVideoBoxContextQueue(void (^block)(void))
 #pragma mark video edit
 
 - (void)syncFinishEditByFilePath:(NSString *)filePath complete:(void (^)(NSError *))complete{
-    runSynchronouslyOnVideoBoxContextQueue(^{
-        [self finishEditByFilePath:filePath complete:complete];
-    });
+    [self syncFinishEditByFilePath:filePath progress:nil complete:complete];
 }
 
 - (void)asyncFinishEditByFilePath:(NSString *)filePath complete:(void (^)(NSError *))complete{
+    [self asyncFinishEditByFilePath:filePath progress:nil complete:complete];
+}
+
+- (void)syncFinishEditByFilePath:(NSString *)filePath progress:(void (^)(float))progress complete:(void (^)(NSError *))complete{
+    
+    if ([[NSThread currentThread] isMainThread]) {
+        NSAssert(NO, @"You shouldn't make it in main thread!");
+    }
+    
+    runSynchronouslyOnVideoBoxContextQueue(^{
+        [self finishEditByFilePath:filePath progress:progress complete:complete];
+    });
+}
+
+- (void)asyncFinishEditByFilePath:(NSString *)filePath progress:(void (^)(float))progress complete:(void (^)(NSError *))complete{
     runAsynchronouslyOnVideoBoxContextQueue(^{
-        [self finishEditByFilePath:filePath complete:complete];
+        [self finishEditByFilePath:filePath progress:progress complete:complete];
     });
 }
 
 - (void)cancelEdit{
-    
     runSynchronouslyOnVideoBoxProcessingQueue(^{
         self.cancel = YES;
         if (self.exportCommand.exportSession.status == AVAssetExportSessionStatusExporting) {
@@ -472,7 +490,13 @@ void runAsynchronouslyOnVideoBoxContextQueue(void (^block)(void))
     [self.tmpVideoSpace removeAllObjects];
     [self.workSpace removeAllObjects];
     [self.composeSpace removeAllObjects];
+    self.composeCount = 0;
+    self.progress = nil;
     self.editorComplete = nil;
+    if (_progressLink) {
+        [_progressLink invalidate];
+         _progressLink = nil;
+    }
     self.filePath = nil;
     self.tmpPath = nil;
     
@@ -530,7 +554,16 @@ void runAsynchronouslyOnVideoBoxContextQueue(void (^block)(void))
     self.exportCommand = exportCommand;
     [exportCommand performSaveByPath:filePath];
 
-
+    if (self.progress && !_progressLink) {
+        
+        _progressLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(displayLinkCallback:)];
+        if (@available(iOS 10.0, *)) {
+            _progressLink.preferredFramesPerSecond = 10;
+        }else{
+            _progressLink.frameInterval = 6;
+        }
+        [_progressLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+    }
 }
 
 - (void)successToProcessCurrentCompostion{
@@ -597,7 +630,7 @@ void runAsynchronouslyOnVideoBoxContextQueue(void (^block)(void))
    
 }
 
-- (void)finishEditByFilePath:(NSString *)filePath complete:(void (^)(NSError *error))complete{
+- (void)finishEditByFilePath:(NSString *)filePath progress:(void (^)(float progress))progress complete:(void (^)(NSError *error))complete{
     
     [self commitCompostionToWorkspace];
     
@@ -610,6 +643,12 @@ void runAsynchronouslyOnVideoBoxContextQueue(void (^block)(void))
     
     self.filePath = filePath;
     self.editorComplete = complete;
+    self.progress = progress;
+    self.composeCount = self.composeSpace.count;
+    
+    if (self.composeCount != 1) { // 代表需要将compose里的视频生成后再合为一个
+        self.composeCount ++;
+    }
     
     runSynchronouslyOnVideoBoxProcessingQueue(^{
         
@@ -625,11 +664,21 @@ void runAsynchronouslyOnVideoBoxContextQueue(void (^block)(void))
         }
     });
     
-    
 }
 
 - (NSString *)tmpVideoFilePath{
     return [_tmpDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%f.mp4",[NSDate timeIntervalSinceReferenceDate]]];
+}
+
+- (void)displayLinkCallback:(CADisplayLink *)link{
+    if (self.progress && self.exportCommand) {
+        if (self.composeCount == 1) {
+            self.progress(1.0 / self.composeCount * (self.composeCount - self.composeSpace.count) + 1.0 / self.composeCount * self.exportCommand.exportSession.progress);
+        }else{
+            self.progress(1.0 / self.composeCount * (self.composeCount - self.composeSpace.count - 1) + 1.0 / self.composeCount * self.exportCommand.exportSession.progress);
+        }
+       
+    }
 }
 
 #pragma mark notification

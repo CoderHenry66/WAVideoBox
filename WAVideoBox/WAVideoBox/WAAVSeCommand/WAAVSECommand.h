@@ -35,7 +35,6 @@
  */
 - (void)performAudioCompopsition;
 
-
  /**
   计算旋转角度
   
@@ -44,9 +43,9 @@
   */
 - (NSUInteger)degressFromTransform:(CGAffineTransform)transForm;
 
-
-
 @end
 
 extern NSString* const WAAVSEExportCommandCompletionNotification;
+
 extern NSString* const WAAVSEExportCommandError;
+

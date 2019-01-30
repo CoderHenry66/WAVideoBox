@@ -161,6 +161,7 @@ typedef NS_ENUM(NSUInteger,WAVideoExportRatio) {
 #pragma mark 处理
 /**
  异步视频处理
+ @param filePath 存储位置
  @param complete 回调block
  */
 - (void)asyncFinishEditByFilePath:(NSString *)filePath complete:(void (^)(NSError *error))complete;
@@ -170,6 +171,23 @@ typedef NS_ENUM(NSUInteger,WAVideoExportRatio) {
  @param complete 回调block
  */
 - (void)syncFinishEditByFilePath:(NSString *)filePath complete:(void (^)(NSError *error))complete;
+
+/**
+ 异步视频处理带进度回调
+ @param filePath 存储位置
+ @param progress 进度block
+ @param complete 回调block
+ */
+- (void)asyncFinishEditByFilePath:(NSString *)filePath progress:(void (^)(float progress))progress complete:(void (^)(NSError *error))complete;
+
+/**
+ 同步视频处理带进度回调
+ tip:主线程下无法使用此同步操作，因为进度回调也是在主线程，如果在主线程做同步等待，会造成死锁
+ @param filePath 存储位置
+ @param progress 进度block
+ @param complete 回调block
+ */
+- (void)syncFinishEditByFilePath:(NSString *)filePath progress:(void (^)(float progress))progress complete:(void (^)(NSError *error))complete;
 
 /**
  取消操作

@@ -11,12 +11,14 @@
 
 @interface WAAVSEExportCommand : WAAVSECommand
 
-@property AVAssetExportSession *exportSession;
+@property (nonatomic , strong)AVAssetExportSession *exportSession;
 
 @property (nonatomic , assign) NSInteger videoQuality;
 
 - (void)performSaveByPath:(NSString *)path;
 
 - (void)performSaveAsset:(AVAsset *)asset byPath:(NSString *)path;
+
+- (void)addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context;
 
 @end

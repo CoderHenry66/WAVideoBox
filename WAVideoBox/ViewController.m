@@ -94,7 +94,9 @@
     [_videoBox appendVideoByPath:_videoPath];
     [_videoBox appendImages:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"gifTest" ofType:@"gif"]]  relativeRect:CGRectMake(0.6, 0.2, 0.3, 0)];
     
-    [_videoBox asyncFinishEditByFilePath:filePath complete:^(NSError *error) {
+    [_videoBox asyncFinishEditByFilePath:filePath progress:^(float progress) {
+        NSLog(@"progress -- %f",progress);
+    } complete:^(NSError *error) {
         if (!error) {
             [wself goToPlayVideoByFilePath:filePath];
         }
@@ -200,7 +202,9 @@
     
     [_videoBox rangeVideoByTimeRange:CMTimeRangeMake(CMTimeMake(2400, 600), CMTimeMake(3600, 600))];
     
-    [_videoBox asyncFinishEditByFilePath:filePath complete:^(NSError *error) {
+    [_videoBox asyncFinishEditByFilePath:filePath progress:^(float progress) {
+        NSLog(@"progress --- %f",progress);
+    }  complete:^(NSError * error) {
         if (!error) {
             [wself goToPlayVideoByFilePath:filePath];
         }
@@ -240,7 +244,9 @@
     [_videoBox commit];
     [_videoBox gearBoxWithScale:2];
     
-    [_videoBox asyncFinishEditByFilePath:filePath complete:^(NSError * error) {
+    [_videoBox asyncFinishEditByFilePath:filePath progress:^(float progress) {
+        NSLog(@"progress --- %f",progress);
+    }  complete:^(NSError * error) {
         if (!error) {
             [wself goToPlayVideoByFilePath:filePath];
         }
