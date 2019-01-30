@@ -125,7 +125,7 @@ V 1.0.2 更新
             // do it
     }];
     
-![骚操作](https://img-blog.csdnimg.cn/20190128171430628.gif#pic_center)   
+![骚操作](https://img-blog.csdnimg.cn/20190128171430628.gif)   
 
 Box分析
 =====================
