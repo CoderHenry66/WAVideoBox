@@ -38,7 +38,7 @@
 
 @property (nonatomic , copy) NSString *filePath;
 
-@property (nonatomic , copy) NSString *tmpPath;
+@property (nonatomic , copy) NSString *tmpPath; //当前临时合成的文件位置
 
 @property (nonatomic , copy) void (^editorComplete)(NSError *error);
 
@@ -499,7 +499,6 @@ void runAsynchronouslyOnVideoBoxContextQueue(void (^block)(void))
     }
     self.filePath = nil;
     self.tmpPath = nil;
-    
     self.directCompostionIndex = 0;
     
 }
@@ -550,7 +549,16 @@ void runAsynchronouslyOnVideoBoxContextQueue(void (^block)(void))
         self.tmpPath = filePath = [self tmpVideoFilePath];
     }
     
+    
+    // 这里需要逐帧扫描
+    if (self.videoQuality && self.composeCount == 1 && self.tmpVideoSpace.count == 0 && !composition.mutableVideoComposition) {
+        WAAVSECommand *command = [[WAAVSECommand alloc] initWithComposition:composition];
+        [command performWithAsset:composition.mutableComposition];
+        [command performVideoCompopsition];
+    }
+    
     WAAVSEExportCommand *exportCommand = [[WAAVSEExportCommand alloc] initWithComposition:composition];
+    exportCommand.videoQuality = self.videoQuality;
     self.exportCommand = exportCommand;
     [exportCommand performSaveByPath:filePath];
 
@@ -583,10 +591,15 @@ void runAsynchronouslyOnVideoBoxContextQueue(void (^block)(void))
             [assetAry addObject:[AVAsset assetWithURL:[NSURL fileURLWithPath:filePath]]];
         }
         [mixComand performWithAssets:assetAry];
+        if (self.videoQuality) { // 需要逐帧对画面处理
+            [mixComand performVideoCompopsition];
+        }
+        
         mixComand.composition.presetName = self.presetName;
         mixComand.composition.videoQuality = self.videoQuality;
         
         WAAVSEExportCommand *exportCommand = [[WAAVSEExportCommand alloc] initWithComposition:mixComand.composition];
+        exportCommand.videoQuality = self.videoQuality;
         self.exportCommand = exportCommand;
         [exportCommand performSaveByPath:self.filePath];
        

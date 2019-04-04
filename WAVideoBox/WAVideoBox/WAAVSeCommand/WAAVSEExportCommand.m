@@ -17,7 +17,7 @@
 
 - (instancetype)initWithComposition:(WAAVSEComposition *)composition{
     if (self = [super initWithComposition:composition]) {
-        self.videoQuality = 6;
+        self.videoQuality = 0;
     }
     return self;
 }
@@ -48,28 +48,32 @@
     self.exportSession.videoComposition = self.composition.mutableVideoComposition;
     self.exportSession.audioMix = self.composition.mutableAudioMix;
     
+    self.exportSession.timeRange = CMTimeRangeMake(kCMTimeZero, [self.composition duration]);
+    
+    self.exportSession.outputURL = [NSURL fileURLWithPath:path];
+    self.exportSession.outputFileType = self.composition.fileType;
     
     if (self.videoQuality) {
         
         if ([self.composition.presetName isEqualToString:AVAssetExportPreset640x480]) {
-            self.ratioParam = 0.02;
+            self.ratioParam = 0.02 ;
         }
         
         if ([self.composition.presetName isEqualToString:AVAssetExportPreset960x540]) {
-            self.ratioParam = 0.04;
+            self.ratioParam = 0.04 ;
         }
+        
         if ([self.composition.presetName isEqualToString:AVAssetExportPreset1280x720]) {
-            self.ratioParam = 0.08;
+            self.ratioParam = 0.08 ;
         }
-       
+        
         if (self.ratioParam) {
-             self.exportSession.fileLengthLimit = CMTimeGetSeconds(self.composition.duration) * self.ratioParam * self.composition.videoQuality * 1024 * 1024;
+            self.exportSession.fileLengthLimit = CMTimeGetSeconds(self.composition.duration) * self.ratioParam * self.composition.videoQuality * 1024 * 1024;
         }
-       
+        
     }
     
-    self.exportSession.outputURL = [NSURL fileURLWithPath:path];
-    self.exportSession.outputFileType = self.composition.fileType;
+  
     [self.exportSession exportAsynchronouslyWithCompletionHandler:^(void){
 
         switch (self.exportSession.status) {

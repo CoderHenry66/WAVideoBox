@@ -44,7 +44,7 @@ typedef NS_ENUM(NSUInteger,WAVideoExportRatio) {
 @property (nonatomic , assign) WAVideoExportRatio ratio;
 
 /**
- 输出的视频质量(0~10)，默认为0(自动）,6差不多抖音视频质量平级，自动分辩率下无效
+ 输出的视频质量(0~10)，默认为0(不开启）,6差不多抖音视频质量平级，此参数有可能会加长处理时长。自动分辩率下此参数会自动失效
  */
 @property (nonatomic , assign) NSInteger videoQuality;
 

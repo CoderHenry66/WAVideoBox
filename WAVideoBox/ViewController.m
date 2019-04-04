@@ -75,8 +75,8 @@
     __weak typeof(self) wself = self;
     
     [_videoBox appendVideoByPath:_videoPath];
-    _videoBox.ratio = WAVideoExportRatioLowQuality;
-//    _videoBox.videoQuality = 1; 有两种方法可以压缩
+    _videoBox.ratio = WAVideoExportRatio960x540;
+    _videoBox.videoQuality = 1; // 有两种方法可以压缩
     [_videoBox asyncFinishEditByFilePath:filePath complete:^(NSError *error) {
         if (!error) {
             [wself goToPlayVideoByFilePath:filePath];
