@@ -104,7 +104,7 @@
         AVAssetTrack *videoTrack = [self.composition.mutableComposition tracksWithMediaType:AVMediaTypeVideo][0];
 
         AVMutableVideoCompositionLayerInstruction *passThroughLayer = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoTrack];
-        [passThroughLayer setTransform:self.assetVideoTrack.preferredTransform atTime:kCMTimeZero];
+        [passThroughLayer setTransform:[self transformFromDegress:self.trackDegress natureSize:self.assetVideoTrack.naturalSize] atTime:kCMTimeZero];
         passThroughInstruction.layerInstructions = @[passThroughLayer];
         
         [self.composition.instructions addObject:passThroughInstruction];
@@ -156,6 +156,21 @@
     
     return degress;
 }
+
+- (CGAffineTransform)transformFromDegress:(float)degress natureSize:(CGSize)natureSize{
+    /** 矩阵校正 */
+    // x = ax1 + cy1 + tx,y = bx1 + dy2 + ty
+    if (degress == 90) {
+        return CGAffineTransformMake(0, 1, -1, 0, natureSize.height, 0);
+    }else if (degress == 180){
+        return CGAffineTransformMake(-1, 0, 0, -1, natureSize.width , natureSize .height);
+    }else if (degress == 270){
+        return CGAffineTransformMake(0, -1, 1, 0, -natureSize.height, 2 * natureSize.width);
+    }else{
+        return CGAffineTransformIdentity;
+    }
+}
+
 
 
 NSString *const WAAVSEExportCommandCompletionNotification = @"WAAVSEExportCommandCompletionNotification";
